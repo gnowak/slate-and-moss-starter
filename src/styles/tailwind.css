@@ -1,0 +1,39 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Base type */
+:root {
+  --bg: #f5f3ef;
+  --ink: #475569;
+  --head: #1e293b;
+  --moss: #4f7d5c;
+  --moss-soft: #7baf85;
+  --border: #d6d3d1;
+}
+
+html {
+  color: var(--ink);
+  background: var(--bg);
+}
+h1,
+h2,
+h3,
+h4 {
+  color: var(--head);
+}
+a {
+  @apply underline decoration-moss/30 underline-offset-4 hover:text-moss;
+}
+.container {
+  @apply max-w-5xl mx-auto px-4;
+}
+.card {
+  @apply rounded-2xl border border-[var(--border)] p-5 bg-white/70 shadow-sm;
+}
+.btn {
+  @apply inline-flex items-center gap-2 rounded-xl px-4 py-2 border border-[var(--border)] hover:border-moss hover:bg-moss/5;
+}
+.kicker {
+  @apply uppercase tracking-widest text-xs text-moss;
+}

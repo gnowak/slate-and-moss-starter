@@ -1,0 +1,47 @@
+---
+const { title = 'Slate & Moss', description = 'Modern living, naturally inspired.' } = Astro.props;
+---
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={description} />
+    <link rel="icon" href="/favicon.ico" />
+    <title>{title}</title>
+    <!-- Plausible (optional) -->
+    <!-- <script defer data-domain="slateandmoss.com" src="https://plausible.io/js/script.js"></script> -->
+    <!-- Umami (optional) -->
+    <script async src="https://cloud.umami.is/script.js" data-website-id="4ccb86ac-3c71-44c4-ba92-a26e94a2d903"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  </head>
+  <body class="font-[Inter]">
+    <link rel="stylesheet" href="/styles/tokens.css" />
+    <link rel="stylesheet" href="/src/styles/tailwind.css" />
+    <header class="border-b border-[var(--border)] backdrop-blur supports-[backdrop-filter]:bg-white/60 sticky top-0 z-50">
+      <div class="container flex items-center justify-between py-3">
+        <a href="/" class="text-xl font-semibold no-underline">Slate<span class="text-moss">&</span>Moss</a>
+        <nav class="flex gap-5 text-sm">
+          <a href="/plant-living" class="no-underline">Plant Living</a>
+          <a href="/eco-tech" class="no-underline">Eco‑Tech</a>
+          <a href="/guides" class="no-underline">Guides</a>
+          <a href="/about" class="no-underline">About</a>
+        </nav>
+      </div>
+    </header>
+    <main class="container py-8">
+      <slot />
+    </main>
+    <footer class="mt-16 border-t border-[var(--border)]">
+      <div class="container py-8 text-sm flex flex-col gap-2 md:flex-row md:items-center md:justify-between">
+        <p>© {new Date().getFullYear()} Slate & Moss</p>
+        <div class="flex gap-4">
+          <a href="/disclosure" class="no-underline">Affiliate Disclosure</a>
+          <a href="/privacy" class="no-underline">Privacy</a>
+          <a href="/contact" class="no-underline">Contact</a>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
