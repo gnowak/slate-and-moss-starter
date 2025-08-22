@@ -1,7 +1,20 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+import { getCollection } from "astro:content";
+
+const guides = await getCollection("guide");
 ---
+
 <BaseLayout title="Guides — Slate & Moss">
   <h1 class="text-3xl font-bold mb-6">Guides</h1>
-  <p>Long‑form how‑tos for sustainable urban living.</p>
+
+  <div class="grid gap-6 md:grid-cols-2">
+    {guides.map(guide => (
+      <a href={`/guides/${guide.slug}`} class="card no-underline">
+        <p class="kicker">{guide.data.tags?.[0] ?? "Guide"}</p>
+        <h3 class="text-xl font-semibold mb-2">{guide.data.title}</h3>
+        <p class="text-sm">{guide.data.excerpt}</p>
+      </a>
+    ))}
+  </div>
 </BaseLayout>

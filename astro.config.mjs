@@ -1,16 +1,16 @@
-import { defineConfig } from 'astro/config';
-import tailwind from '@astrojs/tailwind';
-import mdx from '@astrojs/mdx';
-import sitemap from '@astrojs/sitemap';
+import { defineConfig } from "astro/config";
+import tailwind from "@astrojs/tailwind";
+import mdx from "@astrojs/mdx";
+import sitemap from "@astrojs/sitemap";
 
 export default defineConfig({
-  site: 'https://slateandmoss.com', // update for OG URLs
+  site: "https://slateandmoss.com", // update for OG URLs
   integrations: [
     tailwind({
-      applyBaseStyles: false
+      applyBaseStyles: false,
     }),
     mdx(),
-    sitemap()
+    sitemap(),
   ],
-  output: 'static'
+  output: "static",
 });
