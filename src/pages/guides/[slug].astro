@@ -1,5 +1,4 @@
 ---
-// src/pages/guides/[slug].astro
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import { getCollection, getEntryBySlug } from "astro:content";
 
@@ -12,12 +11,28 @@ const { slug } = Astro.params;
 const entry = await getEntryBySlug("guide", slug);
 if (!entry) throw new Error(`Guide not found: ${slug}`);
 
-const { Content } = await entry.render(); // <-- only Content comes from render()
-const { data } = entry;                   // <-- frontmatter lives here
----
+const { Content } = await entry.render();
+const { data } = entry;
 
+// Safely import the cover if provided
+let coverImg;
+if (data.cover) {
+  coverImg = await import(/* @vite-ignore */ data.cover);
+}
+---
 <BaseLayout title={`${data.title} — Slate & Moss`} description={data.excerpt}>
   <article class="prose prose-slate max-w-none">
+    {coverImg && (
+      <img
+        src={coverImg.default.src}
+        width={coverImg.default.width}
+        height={coverImg.default.height}
+        alt={data.title}
+        class="mb-6 rounded-2xl border border-[var(--border)] shadow-sm w-full h-auto object-cover"
+        loading="lazy"
+        decoding="async"
+      />
+    )}
     <h1>{data.title}</h1>
     {data.excerpt && <p class="text-lg text-slateLight">{data.excerpt}</p>}
     <Content />
