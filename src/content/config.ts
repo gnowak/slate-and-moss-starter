@@ -1,4 +1,4 @@
-import { defineCollection, z } from "astro:content";
+import { defineCollection, z, image } from "astro:content";
 
 const post = defineCollection({
   type: "content",
@@ -17,14 +17,13 @@ const guide = defineCollection({
   type: "content",
   schema: z.object({
     title: z.string(),
-    excerpt: z.string().optional(),
-    difficulty: z
-      .enum(["Beginner", "Intermediate", "Advanced"])
-      .default("Beginner"),
-    est_read: z.number().optional(),
-    affiliate_blocks: z.boolean().default(false),
+    description: z.string().optional(),
+    pubDate: z.coerce.date(),
+    updatedDate: z.coerce.date().optional(),
+    cover: image().optional(), // <-- typed image
+    coverAlt: z.string().optional(),
     tags: z.array(z.string()).default([]),
-    published: z.boolean().default(true),
+    draft: z.boolean().default(false),
   }),
 });
 
